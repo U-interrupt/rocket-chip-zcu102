@@ -1,4 +1,4 @@
-package vcu128
+package zcu102
 
 import chisel3._
 import freechips.rocketchip.config.{Parameters, Field}
@@ -44,7 +44,9 @@ class RocketChip(implicit val p: Parameters) extends Module {
   // if reset deasserted before TCK rises
   systemJtag.reset := reset.asAsyncReset
   target.resetctrl.foreach { rc =>
-    rc.hartIsInReset.foreach { _ := childReset }
+    rc.hartIsInReset.foreach {
+      _ := childReset
+    }
   }
 
   Debug.connectDebugClockAndReset(target.debug, clock)
@@ -58,7 +60,7 @@ class RocketChip(implicit val p: Parameters) extends Module {
 }
 
 class RocketTop(implicit p: Parameters)
-    extends RocketSubsystem
+  extends RocketSubsystem
     with HasAsyncExtInterrupts
     with HasPeripheryDebug
     with CanHaveMasterAXI4MemPort
@@ -72,7 +74,7 @@ class RocketTop(implicit p: Parameters)
 }
 
 class RocketTopModule(outer: RocketTop)
-    extends RocketSubsystemModuleImp(outer)
+  extends RocketSubsystemModuleImp(outer)
     with HasRTCModuleImp
     with HasExtInterruptsModuleImp
     with HasPeripheryDebugModuleImp

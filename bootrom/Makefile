@@ -5,8 +5,12 @@ OBJCOPY=riscv64-unknown-elf-objcopy
 
 all: $(bootrom_img)
 
-%.img: %.elf
+%.img: %.bin
+	dd if=$< of=$@ bs=128 count=1
+
+%.bin: %.elf
 	$(OBJCOPY) -O binary $< $@
 
-%.elf: %.S bootloader.c linker.ld
-	$(GCC) -Tlinker.ld $< bootloader.c -nostdlib -static -Wl,--no-gc-sections -o $@
+%.elf: %.S linker.ld
+	$(GCC) -Tlinker.ld $< -nostdlib -static -Wl,--no-gc-sections -o $@
+	riscv64-unknown-elf-objdump -d $@ >bootrom.txt

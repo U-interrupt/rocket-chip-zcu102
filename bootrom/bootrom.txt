@@ -1,0 +1,23 @@
+
+bootrom.elf:     file format elf64-littleriscv
+
+
+Disassembly of section .text.start:
+
+0000000000010000 <_start>:
+   10000:	0010041b          	addiw	s0,zero,1
+   10004:	1402                	slli	s0,s0,0x20
+   10006:	f1402573          	csrr	a0,mhartid
+   1000a:	00000597          	auipc	a1,0x0
+   1000e:	07658593          	addi	a1,a1,118 # 10080 <_dtb>
+   10012:	8402                	jr	s0
+
+Disassembly of section .text.hang:
+
+0000000000010040 <_hang>:
+   10040:	f1402573          	csrr	a0,mhartid
+   10044:	00000597          	auipc	a1,0x0
+   10048:	03c58593          	addi	a1,a1,60 # 10080 <_dtb>
+   1004c:	30405073          	csrwi	mie,0
+   10050:	10500073          	wfi
+   10054:	bff5                	j	10050 <_hang+0x10>

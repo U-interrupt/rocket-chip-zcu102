@@ -89,7 +89,7 @@ object rocketChip extends CommonModule with SbtModule {
     Seq("-deprecation", "-unchecked", "-Xsource:2.11")
 }
 
-object vcu128 extends CommonModule with ScalafmtModule with ScalafixModule {
+object zcu102 extends CommonModule with ScalafmtModule with ScalafixModule {
   override def millSourcePath = os.pwd
 
   override def ivyDeps = super.ivyDeps() ++ Agg(
