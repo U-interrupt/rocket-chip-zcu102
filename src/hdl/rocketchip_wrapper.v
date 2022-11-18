@@ -207,8 +207,8 @@ module rocketchip_wrapper(
     input [1:0] M_AXI_MMIO_rresp;
     input M_AXI_MMIO_rlast;
 
-    assign M_AXI_araddr[63:32] = 0;
-    assign M_AXI_awaddr[63:32] = 0;
+    assign M_AXI_araddr[63:36] = 0;
+    assign M_AXI_awaddr[63:36] = 0;
     assign M_AXI_MMIO_araddr[63:31] = 0;
     assign M_AXI_MMIO_awaddr[63:31] = 0;
 
@@ -224,7 +224,7 @@ module rocketchip_wrapper(
 
         .io_mem_axi4_ar_valid (M_AXI_arvalid),
         .io_mem_axi4_ar_ready (M_AXI_arready),
-        .io_mem_axi4_ar_bits_addr (M_AXI_araddr[31:0]),
+        .io_mem_axi4_ar_bits_addr (M_AXI_araddr[35:0]),
         .io_mem_axi4_ar_bits_id (M_AXI_arid),
         .io_mem_axi4_ar_bits_size (M_AXI_arsize),
         .io_mem_axi4_ar_bits_len (M_AXI_arlen),
@@ -235,7 +235,7 @@ module rocketchip_wrapper(
         .io_mem_axi4_ar_bits_qos (M_AXI_arqos),
         .io_mem_axi4_aw_valid (M_AXI_awvalid),
         .io_mem_axi4_aw_ready (M_AXI_awready),
-        .io_mem_axi4_aw_bits_addr (M_AXI_awaddr[31:0]),
+        .io_mem_axi4_aw_bits_addr (M_AXI_awaddr[35:0]),
         .io_mem_axi4_aw_bits_id (M_AXI_awid),
         .io_mem_axi4_aw_bits_size (M_AXI_awsize),
         .io_mem_axi4_aw_bits_len (M_AXI_awlen),

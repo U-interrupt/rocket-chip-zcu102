@@ -12,6 +12,8 @@
 !src/
 !scripts/
 !hw_handoff/
+!openocd/
+!bd_scripts
 
 # vivado workspace
 proj/*

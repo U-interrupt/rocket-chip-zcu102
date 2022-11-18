@@ -15,3 +15,4 @@ set_property PACKAGE_PIN AJ15 [get_ports {LED_tri_o[4]}]
 set_property PACKAGE_PIN AH13 [get_ports {LED_tri_o[5]}]
 set_property PACKAGE_PIN AH14 [get_ports {LED_tri_o[6]}]
 set_property PACKAGE_PIN AL12 [get_ports {LED_tri_o[7]}]
+

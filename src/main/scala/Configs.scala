@@ -39,8 +39,8 @@ class WithCustomMemPort
       Some(
         MemoryPortParams(
           MasterPortParams(
-            base = x"1_0000_0000",
-            size = x"1000_0000",
+            base = x"8_0000_0000",
+            size = x"8000_0000",
             beatBytes = site(MemoryBusKey).beatBytes,
             idBits = 4
           ),
@@ -60,13 +60,21 @@ class WithCustomJtag
       )
   })
 
+class WithCFlush
+  extends Config((site, here, up) => { case RocketTilesKey =>
+    up(RocketTilesKey, site).map(x =>
+      x.copy(core = x.core.copy(haveCFlush = true))
+    )
+  })
+
 class RocketConfig
   extends Config(
     new WithCoherentBusTopology ++
       new WithoutTLMonitors ++
       new WithIDBits(5) ++
       new WithJtagDTM ++
-      new WithNBigCores(4) ++
+      new WithCustomJtag ++
+      new WithNBigCores(1) ++
       new WithBootROMResetAddress(0x10000) ++
       new WithNExtTopInterrupts(6) ++
       new WithCustomMemPort ++
